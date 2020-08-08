@@ -19,6 +19,7 @@ const history = createBrowserHistory();
 
 function App() {
   return (
+    <Router history={history}>
     <div className="App">
       {/* Page Wrapper */}
       <div id="wrapper">
@@ -28,18 +29,14 @@ function App() {
         {/* Sidebar starts */}
         <Sidebar />
         {/* Sidebar ends */}
-        <Router history={history}>
-          <Link to="/">To Main Page</Link>
-          <Link to="/downloader">To Downloader Page</Link>
           <Switch>
             <Route exact path="/" component={MainPage} />
             <Route path="/downloader" component={DownloaderPage} />
           </Switch>
-        </Router>
       </div>
       {/* End of Page Wrapper */}
     </div>
-    
+    </Router>
   );
 }
 

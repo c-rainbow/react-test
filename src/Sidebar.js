@@ -1,9 +1,13 @@
 
 import React from 'react';
 
+import {BrowserRouter as Router, Link} from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory';
+const history = createBrowserHistory();
+
+
 function Sidebar() {
     return (
-
         <div className="Sidebar">
             {/* Sidebar */}
             <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -26,10 +30,10 @@ function Sidebar() {
 
             {/* Nav Item - Follower list downloader */}
             <li className="nav-item">
-                <a className="nav-link" href="/downloader" >
+                <Link className="nav-link" to="/downloader" >
                     <i className="fas fa-fw fa-cat"></i>
                     <span>채팅+팔로워 다운로드</span>
-                </a>                
+                </Link>                
             </li>
 
             {/* Divider */}
@@ -42,10 +46,10 @@ function Sidebar() {
 
             {/* Nav Item - Streamer mode */}
             <li className="nav-item">
-                <a className="nav-link" href="/" >
+                <Link className="nav-link" to="/" >
                     <i className="fas fa-fw fa-cat"></i>
                     <span>스트리머 모드</span>
-                </a>  
+                </Link>  
             </li>
 
             {/* Nav Item - Moderator mode */}
