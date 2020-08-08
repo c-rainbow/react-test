@@ -9,33 +9,28 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
-
-import createBrowserHistory from 'history/createBrowserHistory';
-const history = createBrowserHistory();
-
-
+import Footer from './Footer';
 
 function App() {
   return (
-    <Router history={history}>
-    <div className="App">
-      {/* Page Wrapper */}
-      <div id="wrapper">
-        {/*<Link to="/">Main</Link>
-        <Link to="/downloader">Downloader</Link>*/}
-
-        {/* Sidebar starts */}
-        <Sidebar />
-        {/* Sidebar ends */}
-          <Switch>
-            <Route exact path="/" component={MainPage} />
-            <Route path="/downloader" component={DownloaderPage} />
-          </Switch>
+    <Router>
+      <div className="App">
+        {/* Page Wrapper */}
+        <div id="wrapper">
+          {/* Sidebar starts */}
+          <Sidebar />
+          {/* Sidebar ends */}
+          <div id="content-wrapper" className="d-flex flex-column">
+            <Switch>
+              <Route exact path="/" component={MainPage} />
+              <Route path="/downloader" component={DownloaderPage} />
+            </Switch>
+          </div>
+        </div>
+        {/* End of Page Wrapper */}
+        <Footer />
       </div>
-      {/* End of Page Wrapper */}
-    </div>
     </Router>
   );
 }

@@ -1,10 +1,7 @@
 
 import React from 'react';
 
-import {BrowserRouter as Router, Link} from 'react-router-dom';
-import createBrowserHistory from 'history/createBrowserHistory';
-const history = createBrowserHistory();
-
+import { Link } from 'react-router-dom';
 
 function Sidebar() {
     return (

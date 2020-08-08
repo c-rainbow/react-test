@@ -1,8 +1,10 @@
-
 import React from 'react';
 
-function MainPage() {
-    return (    
+
+
+
+function HomePage() {
+    return (
         <div id="content">
             {/* Begin Page Content */}
             <div className="container-fluid">
@@ -292,7 +294,5 @@ function MainPage() {
             {/* /.container-fluid */}
 
         </div>
-    )
+    );
 }
-
-export default MainPage;
