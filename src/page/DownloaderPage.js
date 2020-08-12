@@ -1,16 +1,12 @@
 
 import React from 'react';
-import TopBar from './TopBar';
+import TopBar from '../layout/TopBar';
+import Sidebar from '../layout/Sidebar';
 
-function DownloaderPage() {
+
+function DownloaderPageContent() {
     return (
-        <div id="content">
-
-        <TopBar />
-
-        {/* Begin Page Content */}
         <div className="container-fluid">
-            test
             {/* Page Heading */}
             <div className="d-sm-flex align-items-center justify-content-between mt-4 mb-4">
             <a href="https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=59x8jyaudw3pnyi722x3e2x9awh385&redirect_uri=https://c-rainbow.github.io/twitch-analyzer-login/oauth/redirect/intentionally_long_directory_name/to_hide_token_in_address_bar/still_need_to_add_more_characters/but_I_dont_know_what_else_to_say/I_will_just_generate_some_random_string/rsnxh6cjm08oefbznda54mgce1lfi89oa3gw6lr6/ha5daayx8au6tosio9evov7x1s2qejxzu0uaqvzn/lxj71wviygdkcwb09y14rkiiv0rgap1n52h07zkm/pyfurq9t674cghvbn2fxdrpvnr3vobypy2z1mp8l/login.html"
@@ -89,8 +85,24 @@ function DownloaderPage() {
             </div>
 
         </div>
-        {/* /.container-fluid */}
+    )
+}
 
+
+function DownloaderPage() {
+    return (
+        <div id="wrapper">
+            {/* Sidebar starts */}
+            <Sidebar />
+            {/* Sidebar ends */}
+            <div id="content-wrapper" className="d-flex flex-column">
+                <div id="content">
+                    <TopBar title="다운로드 페이지" />
+                    {/* Begin Page Content */}
+                    <DownloaderPageContent />
+                    {/* End Page Content */}
+                </div>
+            </div>
         </div>
     )
 }

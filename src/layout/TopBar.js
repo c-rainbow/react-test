@@ -1,5 +1,5 @@
 import React from "react";
-import { isLoggedIn } from "./loginUtil";
+import { isLoggedIn } from "../loginUtil";
 
 
 function UserInfoDiv(props) {

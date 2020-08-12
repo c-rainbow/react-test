@@ -1,8 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
-import Sidebar from './Sidebar';
-import MainPage from './MainPage';
-import DownloaderPage from './DownloaderPage';
+import Sidebar from './layout/Sidebar';
+import MainPage from './page/MainPage';
+import DownloaderPage from './page/DownloaderPage';
 import './App.css';
 
 import {
@@ -10,34 +10,27 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Footer from './Footer';
-import StreamerModePage from './StreamerModePage';
-import ModeratorModePage from './ModeratorModePage';
-import MediaEditorModePage from './MediaEditorModePage';
+import Footer from './layout/Footer';
+import StreamerModePage from './page/StreamerModePage';
+import ModeratorModePage from './page/ModeratorModePage';
+import MediaEditorModePage from './page/MediaEditorModePage';
 
 function App() {
   return (
     <Router>
-      <>
         {/* Page Wrapper */}
-        <div id="wrapper">
-          {/* Sidebar starts */}
-          <Sidebar />
-          {/* Sidebar ends */}
-          <div id="content-wrapper" className="d-flex flex-column">
-            <Switch>
-              <Route exact path="/" component={MainPage} />
-              <Route path="/downloader" component={DownloaderPage} />
-              <Route path="/analytics/streamer" component={StreamerModePage} />
-              <Route path="/analytics/moderator" component={ModeratorModePage} />
-              <Route path="/analytics/mediaeditor" component={MediaEditorModePage} />
-            </Switch>
-          </div>
-        </div>
+        <Switch>
+          <Route exact path="/" component={StreamerModePage} />
+          <Route path="/downloader" component={DownloaderPage} />
+          <Route path="/analytics/streamer" component={StreamerModePage} />
+          <Route path="/analytics/moderator" component={ModeratorModePage} />
+          <Route path="/analytics/mediaeditor" component={MediaEditorModePage} />
+        </Switch>
         {/* End of Page Wrapper */}
 
         {/* Logout Modal */}
-        <div className="modal fade" id="logoutModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="logoutModal" tabIndex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
@@ -54,9 +47,8 @@ function App() {
             </div>
           </div>
         </div>
-
+        {/* Footer */}
         <Footer />
-      </>
     </Router>
   );
 }

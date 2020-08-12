@@ -1,13 +1,11 @@
+
 import React from 'react';
-import TopBar from './TopBar';
+import TopBar from '../layout/TopBar';
 
-
-function MediaEditorModePage() {
-    return (
+function MainPage() {
+    return (    
         <div id="content">
-
-            <TopBar title={"편집자 모드"} />
-            
+            <TopBar title={"Welcome"} />
             {/* Begin Page Content */}
             <div className="container-fluid">
 
@@ -296,7 +294,7 @@ function MediaEditorModePage() {
             {/* /.container-fluid */}
 
         </div>
-    );
+    )
 }
 
-export default MediaEditorModePage;
+export default MainPage;
