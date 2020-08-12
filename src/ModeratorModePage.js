@@ -1,11 +1,15 @@
-
 import React from 'react';
 import TopBar from './TopBar';
 
-function MainPage() {
-    return (    
+
+
+
+function ModeratorModePage() {
+    return (
         <div id="content">
-            <TopBar title={"Welcome"} />
+
+            <TopBar title={"관리자 모드"} />
+
             {/* Begin Page Content */}
             <div className="container-fluid">
 
@@ -66,80 +70,8 @@ function MainPage() {
                         </span>
                     </div>
                     </div>
-                    {/*<div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 className="m-0 font-weight-bold text-primary">채팅 필터</h6>
-                    </div>*/}
-                </div>
-                </div>
-            </div>
-
-            {/* Content Row */}
-            <div className="row">   
-
-                {/* Chatter Count Card Example */}
-                <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-primary shadow h-100 py-2">
-                    <div className="card-body">
-                    <div className="row no-gutters align-items-center">
-                        <div className="col mr-2">
-                        <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">채팅 친 사람 수</div>
-                        <div className="h5 mb-0 font-weight-bold text-gray-800 chatter-count-content">39명</div>
-                        </div>
-                        <div className="col-auto">
-                        <i className="fas fa-bread-slice fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-
-                {/* Chat Count Card Example */}
-                <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-success shadow h-100 py-2">
-                    <div className="card-body">
-                    <div className="row no-gutters align-items-center">
-                        <div className="col mr-2">
-                        <div className="text-xs font-weight-bold text-success text-uppercase mb-1">전체 채팅 수</div>
-                        <div className="h5 mb-0 font-weight-bold text-gray-800 comment-count-content">480개</div>
-                        </div>
-                        <div className="col-auto">
-                        <i className="fas fa-comments fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-
-                {/* Stream Time Example */}
-                <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-info shadow h-100 py-2">
-                    <div className="card-body">
-                    <div className="row no-gutters align-items-center">
-                        <div className="col mr-2">
-                        <div className="text-xs font-weight-bold text-info text-uppercase mb-1">총 비트</div>
-                        <div className="h5 mb-0 mr-3 font-weight-bold text-gray-800 total-bits-content">491개</div>
-                        </div>
-                        <div className="col-auto">
-                        <i className="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-
-                {/* Random Info Card Example */}
-                <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-warning shadow h-100 py-2">
-                    <div className="card-body">
-                    <div className="row no-gutters align-items-center">
-                        <div className="col mr-2">
-                        <div className="text-xs font-weight-bold text-warning text-uppercase mb-1">구독 알림</div>
-                        <div className="h5 mb-0 font-weight-bold text-gray-800">2명</div>
-                        </div>
-                        <div className="col-auto">
-                        <i className="fas fa-comments fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
                     </div>
                 </div>
                 </div>
@@ -294,7 +226,7 @@ function MainPage() {
             {/* /.container-fluid */}
 
         </div>
-    )
+    );
 }
 
-export default MainPage;
+export default ModeratorModePage;

@@ -10,12 +10,12 @@ function Sidebar() {
             <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             {/* Sidebar - Brand */}
-            <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <Link className="sidebar-brand d-flex align-items-center justify-content-center" to="/">
                 <div className="sidebar-brand-icon">
-                <i className="fas fa-smile-wink"></i>
+                    <i className="fas fa-smile-wink"></i>
                 </div>
                 <div className="sidebar-brand-text mx-3">다시보기 분석기</div>
-            </a>
+            </Link>
 
             {/* Divider */}
             <hr className="sidebar-divider"/>
@@ -38,12 +38,12 @@ function Sidebar() {
 
             {/* Heading */}
             <div className="sidebar-heading">
-                분석기 대시보드
+                분석기
             </div>
 
             {/* Nav Item - Streamer mode */}
             <li className="nav-item">
-                <Link className="nav-link" to="/" >
+                <Link className="nav-link" to="/analytics/streamer" >
                     <i className="fas fa-fw fa-cat"></i>
                     <span>스트리머 모드</span>
                 </Link>  
@@ -51,14 +51,14 @@ function Sidebar() {
 
             {/* Nav Item - Moderator mode */}
             <li className="nav-item">
-                <a className="nav-link" href="index.html">
+                <a className="nav-link" href="/analytics/moderator">
                 <i className="fas fa-fw fa-cat"></i>
                 <span>관리자 모드</span></a>
             </li>
 
             {/* Nav Item - Moderator mode */}
             <li className="nav-item">
-                <a className="nav-link" href="index.html">
+                <a className="nav-link" href="/analytics/mediaeditor">
                 <i className="fas fa-fw fa-cat"></i>
                 <span>편집자 모드</span></a>
             </li>

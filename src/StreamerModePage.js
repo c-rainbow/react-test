@@ -1,153 +1,106 @@
-
 import React from 'react';
 import TopBar from './TopBar';
+import SmallCard from './SmallCard';
+import CollapsableBigCard from './CollapsableBigCard';
+import ContentRow from './ContentRow';
 
-function MainPage() {
-    return (    
+
+
+
+export default function StreamerModePage() {
+    return (
         <div id="content">
-            <TopBar title={"Welcome"} />
+
+            <TopBar title={"스트리머 모드"} />
+
             {/* Begin Page Content */}
             <div className="container-fluid">
 
             {/* Page Heading */}
-            <div className="d-sm-flex align-items-center justify-content-between mt-4 mb-4">
-                <h1 className="h3 mb-0 text-gray-800">대시보드</h1>
-                <input type="file" name="inputfile" id="inputfile"/> 
-                <a href="https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=59x8jyaudw3pnyi722x3e2x9awh385&redirect_uri=https://c-rainbow.github.io/twitch-analyzer-login/oauth/redirect/intentionally_long_directory_name/to_hide_token_in_address_bar/still_need_to_add_more_characters/but_I_dont_know_what_else_to_say/I_will_just_generate_some_random_string/rsnxh6cjm08oefbznda54mgce1lfi89oa3gw6lr6/ha5daayx8au6tosio9evov7x1s2qejxzu0uaqvzn/lxj71wviygdkcwb09y14rkiiv0rgap1n52h07zkm/pyfurq9t674cghvbn2fxdrpvnr3vobypy2z1mp8l/login.html"
-                className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm twitch-login-button">
-                <i className="fas fa-download fa-sm text-white-50"></i> 트위치 로그인
-                </a>
+            <div className="d-sm-flex align-items-center ml-4 mr-4">
+                <label htmlFor="chatlog-inputfile" className="chatlog-inputfile-upload-label">
+                    채팅 로그 파일
+                </label>
+                <input type="file" name="inputfile" id="chatlog-inputfile"/> 
             </div>
             
-            <div className="row">
+            <ContentRow>
                 {/* Chat filter area */}
                 <div className="col-xl-12 col-lg-12">
                 <div className="card shadow mb-4">
-                    <div className="row">
-                    <div className="col-3"></div>
-                    <div className="col-6">
-                        <div className="card-body">
-                        {/* Content Search */}
-                        <form className="d-block-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div className="input-group">
-                            <input type="text" id="filter-text-input" className="form-control bg-light border-0 small"
-                                    placeholder="필터" aria-label="Search" aria-describedby="basic-addon2"/>
-                            <div className="input-group-append">
-                                <button className="btn btn-primary" type="button" id="filter-button">
-                                <i className="fas fa-search fa-sm"></i>
-                                </button>
+                    <ContentRow>
+                        <div className="col-3"></div>
+                        <div className="col-6">
+                            <div className="card-body">
+                            {/* Content Search */}
+                            <form className="d-block-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div className="input-group">
+                                <input type="text" id="filter-text-input" className="form-control bg-light border-0 small"
+                                        placeholder="필터" aria-label="Search" aria-describedby="basic-addon2"/>
+                                <div className="input-group-append">
+                                    <button className="btn btn-primary" type="button" id="filter-button">
+                                    <i className="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                                </div>
+                            </form>
                             </div>
-                            </div>
-                        </form>
-                        </div>
 
-                    </div>
-                    <div className="col-3"></div>
-                    </div>
-                    <div className="row">
-                    <div className="col-12 m-2">
-                        <span className="ml-4 mr-2">최근 사용한 필터:</span>
-                        <span className="ml-1 mr-1">
-                        <button type="button" className="btn btn-outline-success">
-                            비구독자<i className="fas fa-times ml-1" aria-hidden="true"></i>
-                        </button>
-                        </span>
-                        <span className=" ml-1 mr-1">
-                        <button type="button" className="btn btn-outline-success">
-                            아이디 major_trihard &amp; 생성일 1일 미만
-                            <i className="fas fa-times ml-1" aria-hidden="true"></i>
-                        </button>
-                        </span>
-                        <span className=" ml-1 mr-1">
-                        <button type="button" className="btn btn-outline-success">
-                            별 의미 없는 필터
-                            <i className="fas fa-times ml-1" aria-hidden="true"></i>
-                        </button>
-                        </span>
-                    </div>
-                    </div>
+                        </div>
+                        <div className="col-3"></div>
+                    </ContentRow>
+                    <ContentRow>
+                        <div className="col-12 m-2">
+                            <span className="ml-4 mr-2">최근 사용한 필터:</span>
+                            <span className="ml-1 mr-1">
+                            <button type="button" className="btn btn-outline-success">
+                                비구독자<i className="fas fa-times ml-1" aria-hidden="true"></i>
+                            </button>
+                            </span>
+                            <span className=" ml-1 mr-1">
+                            <button type="button" className="btn btn-outline-success">
+                                아이디 major_tryhard &amp; 생성일 1일 미만
+                                <i className="fas fa-times ml-1" aria-hidden="true"></i>
+                            </button>
+                            </span>
+                            <span className=" ml-1 mr-1">
+                            <button type="button" className="btn btn-outline-success">
+                                별 의미 없는 필터
+                                <i className="fas fa-times ml-1" aria-hidden="true"></i>
+                            </button>
+                            </span>
+                        </div>
+                    </ContentRow>
                     {/*<div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 className="m-0 font-weight-bold text-primary">채팅 필터</h6>
                     </div>*/}
                 </div>
                 </div>
-            </div>
+            </ContentRow>
 
             {/* Content Row */}
-            <div className="row">   
-
-                {/* Chatter Count Card Example */}
+            <ContentRow>
+                {/* Chatter Count Card */}     
                 <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-primary shadow h-100 py-2">
-                    <div className="card-body">
-                    <div className="row no-gutters align-items-center">
-                        <div className="col mr-2">
-                        <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">채팅 친 사람 수</div>
-                        <div className="h5 mb-0 font-weight-bold text-gray-800 chatter-count-content">39명</div>
-                        </div>
-                        <div className="col-auto">
-                        <i className="fas fa-bread-slice fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                    </div>
+                    <SmallCard type="primary" title="채팅 친 사람" content="41명" iconName="bread-slice" />
                 </div>
-                </div>
-
-                {/* Chat Count Card Example */}
+                {/* Chat Count Card */}
                 <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-success shadow h-100 py-2">
-                    <div className="card-body">
-                    <div className="row no-gutters align-items-center">
-                        <div className="col mr-2">
-                        <div className="text-xs font-weight-bold text-success text-uppercase mb-1">전체 채팅 수</div>
-                        <div className="h5 mb-0 font-weight-bold text-gray-800 comment-count-content">480개</div>
-                        </div>
-                        <div className="col-auto">
-                        <i className="fas fa-comments fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                    </div>
+                    <SmallCard type="success" title="전체 채팅 수" content="481개" iconName="comments" />
                 </div>
-                </div>
-
-                {/* Stream Time Example */}
+                {/* Bit Card */}
                 <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-info shadow h-100 py-2">
-                    <div className="card-body">
-                    <div className="row no-gutters align-items-center">
-                        <div className="col mr-2">
-                        <div className="text-xs font-weight-bold text-info text-uppercase mb-1">총 비트</div>
-                        <div className="h5 mb-0 mr-3 font-weight-bold text-gray-800 total-bits-content">491개</div>
-                        </div>
-                        <div className="col-auto">
-                        <i className="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                    </div>
+                    <SmallCard type="info" title="총 비트" content="123456개" iconName="clipboard-list" />
                 </div>
-                </div>
-
-                {/* Random Info Card Example */}
+                {/* Subscription Card */}
                 <div className="col-xl-3 col-md-6 mb-4">
-                <div className="card border-left-warning shadow h-100 py-2">
-                    <div className="card-body">
-                    <div className="row no-gutters align-items-center">
-                        <div className="col mr-2">
-                        <div className="text-xs font-weight-bold text-warning text-uppercase mb-1">구독 알림</div>
-                        <div className="h5 mb-0 font-weight-bold text-gray-800">2명</div>
-                        </div>
-                        <div className="col-auto">
-                        <i className="fas fa-comments fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                    </div>
+                    <SmallCard type="warning" title="구독 알림" content="2명" iconName="comments" />
                 </div>
-                </div>
-            </div>
+            </ContentRow>
 
             {/* Content Row */}
 
-            <div className="row">
+            <ContentRow>
 
                 {/* Area Chart */}
                 <div className="col-xl-12 col-lg-12 mb-4">
@@ -220,31 +173,16 @@ function MainPage() {
                     </div>
                 </div>
                 </div>*/}
-            </div>
+            </ContentRow>
 
             {/* Content Row */}
-            <div className="row">
-
-
-                {/* Content Column */}
-                <div className="col-xl-12 col-lg-12 mb-4">
-
-                {/* Project Card Example */}
-                <div className="card shadow mb-12">
-                    <div className="card-header py-3">
-                    <h6 className="m-0 font-weight-bold text-primary">이모티콘 통계</h6>
-                    </div>
-                    <div className="card-body">
-                    <div className="chart-bar">
-                        <canvas id="top-emote-chart-canvas"></canvas>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
+            <ContentRow>
+                <CollapsableBigCard title="이모티콘 통계?" collapsableBodyId="top-emote-count-id"
+                    canvasId="top-emote-chart-canvas" />
+            </ContentRow>
 
             {/* Search bar row */}
-            <div className="row">
+            <ContentRow>    
                 {/* Chat filter area */}
                 <div className="col-xl-4 col-lg-5">
                 <div className="card shadow mb-4">
@@ -288,13 +226,11 @@ function MainPage() {
                 </div>
                 </div>
 
-            </div>
+            </ContentRow>
 
             </div>
             {/* /.container-fluid */}
 
         </div>
-    )
+    );
 }
-
-export default MainPage;
