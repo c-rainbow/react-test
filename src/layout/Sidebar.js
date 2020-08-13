@@ -3,72 +3,73 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-function Sidebar() {
-    return (
-        <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            {/* Sidebar - Brand */}
-            <Link className="sidebar-brand d-flex align-items-center justify-content-center" to="/">
-                <div className="sidebar-brand-icon">
-                    <i className="fas fa-smile-wink"></i>
-                </div>
-                <div className="sidebar-brand-text mx-3">다시보기 분석기</div>
-            </Link>
 
-            {/* Divider */}
-            <hr className="sidebar-divider"/>
+function iconClasses(iconName) {
+    return `fas fa-fw fa-${iconName}`;
+}
 
-            {/* Heading */}
-            <div className="sidebar-heading">
-                다운로더
-            </div>
+function textClasses(className, selectedClass) {
+    if(className === selectedClass) {
+        return `${className} font-weight-bold font-italic`;
+    }
+    return className;
+}
 
-            {/* Nav Item - Follower list downloader */}
-            <li className="nav-item">
-                <Link className="nav-link" to="/downloader" >
-                    <i className="fas fa-fw fa-running"></i>
-                    <span>채팅+팔로워 다운로드</span>
-                </Link>                
-            </li>
+function NavItem(props) {
+  return (
+    <li className="nav-item">
+      <Link className="nav-link" to={props.url} >
+        <i className={iconClasses(props.iconName)}></i>
+        <span className={textClasses(props.linkClass, props.selectedClass)}>
+          {props.linkName}
+        </span>
+      </Link>  
+    </li>
+  )
+}
 
-            {/* Divider */}
-            <hr className="sidebar-divider"/>
 
-            {/* Heading */}
-            <div className="sidebar-heading">
-                분석기
-            </div>
+function Sidebar(props) {
+  return (
+    <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            {/* Nav Item - Streamer mode */}
-            <li className="nav-item">
-                <Link className="nav-link" to="/analytics/streamer" >
-                    <i className="fas fa-fw fa-paw"></i>
-                    <span>스트리머 모드</span>
-                </Link>  
-            </li>
+      {/* Divider */}
+      <div className="m-3"/>
+      {/* Heading */}
+      <div className="sidebar-heading">
+        다운로더
+      </div>
+      
+      {/* Nav Item - Follower list downloader */}
+      <NavItem url="/downloader" iconName="running" linkClass="downloader"
+        selectedClass={props.selectedClass} linkName="채팅+팔로워 다운로드" />
+      
+      {/* Divider */}
+      <hr className="sidebar-divider"/>
+      {/* Heading */}
+      <div className="sidebar-heading">
+        분석기
+      </div>
+      
+      {/* Nav Item - Streamer mode */}
+      <NavItem url="/analytics/streamer" iconName="paw" linkClass="streamer-mode-analytics"
+        selectedClass={props.selectedClass} linkName="스트리머 모드" />
+      {/* Nav Item - Moderator mode */}
+      <NavItem url="/analytics/moderator" iconName="toolbox" linkClass="moderator-mode-analytics"
+        selectedClass={props.selectedClass} linkName="관리자 모드" />
+      {/* Nav Item - Media Editor mode */}
+      <NavItem url="/analytics/media-creator" iconName="cat" linkClass="media-creator-mode-analytics"
+        selectedClass={props.selectedClass} linkName="편집자 모드" />
 
-            {/* Nav Item - Moderator mode */}
-            <li className="nav-item">
-                <a className="nav-link" href="/analytics/moderator">
-                <i className="fas fa-fw fa-toolbox"></i>
-                <span>관리자 모드</span></a>
-            </li>
+      {/* Divider */}
+      <hr className="sidebar-divider d-none d-md-block"/>
 
-            {/* Nav Item - Moderator mode */}
-            <li className="nav-item">
-                <a className="nav-link" href="/analytics/mediaeditor">
-                <i className="fas fa-fw fa-user-graduate"></i>
-                <span>편집자 모드</span></a>
-            </li>
-
-            {/* Divider */}
-            <hr className="sidebar-divider d-none d-md-block"/>
-
-            {/* Sidebar Toggler (Sidebar) */}
-            <div className="text-center d-none d-md-inline">
-                <button className="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>    
-        </ul>
-    )
+      {/* Sidebar Toggler (Sidebar) */}
+      <div className="text-center d-none d-md-inline">
+        <button className="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>    
+    </ul>
+  )
 }
 
 export default Sidebar;
