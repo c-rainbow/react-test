@@ -41,12 +41,12 @@ export default function TopBar() {
   return (
     <nav className="navbar navbar-expand navbar-light bg-white shadow sticky-top">
       
-      <Link className="brand d-flex align-items-center justify-content-center" to="/">
+      <Link className="brand d-flex" to="/">
         <h3 className="text-dark">다시보기 분석기</h3>
       </Link>
 
-      <div className="col-xs-0 col-sm-1"></div>
-      <div className="col-sm-6 col-xs-12">
+      {/*<div className="col-xs-0 col-sm-1"></div>*/}
+      <div className="col-sm-6 col-xs-12 ml-auto">
         <SearchBar />
       </div>
 
@@ -56,9 +56,7 @@ export default function TopBar() {
         <li className="nav-item dropdown no-arrow">
           <UserInfoDiv loggedIn={isLoggedIn()} />
         </li>
-
       </ul>
-
     </nav>
   )
 };

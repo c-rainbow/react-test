@@ -37,9 +37,11 @@ export default function VideoInfoCard() {
       const CommentRepository = window.commentrepository.CommentRepository;
       const originalRepository = CommentRepository.fromCommentsData(commentDatas);
       loadNewRepo(originalRepository);
-      
+      const end = performance.now();
+      console.log("Load time: " + (end - start) + "ms");
     }    
     const fileToRead = inputFileElemRef.current.files[0];
+    const start = performance.now();
     fr.readAsText(fileToRead); 
   }
 
@@ -47,6 +49,16 @@ export default function VideoInfoCard() {
     <CollapsableBigCard title="영상 정보" columnSizes="col-12" collapsableBodyId="video-info-id">
       <ContentRow>
         <div className="col-sm-12 col-md-6">
+          <span className="button-container">
+            <label htmlFor="chatlog-inputfile" className="btn btn-secondary chatlog-inputfile-upload-label">
+            채팅 로그 파일 선택
+            </label>
+            <input type="file" name="chatlog-inputfile" id="chatlog-inputfile" className="d-none"
+              ref={inputFileElemRef} onChange={readChatlogFile} />
+          </span>
+          {chatlogFilenameElem}
+        </div>
+        {/*<div className="col-sm-12 col-md-6">
           <button className="btn btn-secondary m-1">
             <label htmlFor="chatlog-inputfile" className="chatlog-inputfile-upload-label mb-0">
               채팅 로그 파일 선택 
@@ -55,7 +67,7 @@ export default function VideoInfoCard() {
           <input type="file" name="chatlog-inputfile" id="chatlog-inputfile" className="d-none"
             ref={inputFileElemRef} onChange={readChatlogFile} />
           {chatlogFilenameElem}
-        </div>
+        </div>*/}
         <div className="col-sm-12 col-md-6">
           <button className="btn btn-secondary m-1">
             <label htmlFor="followerlist-inputfile" className="followerlist-inputfile-upload-label mb-0">
