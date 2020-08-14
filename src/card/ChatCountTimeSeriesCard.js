@@ -109,7 +109,7 @@ export default function ChatCountTimeSeriesCard(props) {
     chartComponent = <Bar data={data} options={chartOptions} />
   }
   return (
-    <CollapsableBigCard title={props.title} columnSizes="col-12" collapsableBodyId="top-chatter-chart-id">
+    <CollapsableBigCard title={props.title} columnSizes="col-12" collapsableBodyId="chat-time-series-id">
       <div className="chart-area">
         {chartComponent}
       </div>
