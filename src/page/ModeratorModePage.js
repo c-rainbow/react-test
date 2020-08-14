@@ -2,6 +2,8 @@ import React from 'react';
 import TopBar from '../layout/TopBar';
 import Sidebar from '../layout/Sidebar';
 import PageWrapper from './PageWrapper';
+import VideoInfoCard from '../card/VideoInfoCard';
+import ContentRow from '../layout/ContentRow';
 
 
 function ModeratorModePageContent() {
@@ -69,6 +71,12 @@ function ModeratorModePageContent() {
           </div>
         </div>
       </div>
+
+
+      {/* Video info row */}
+      <ContentRow>
+        <VideoInfoCard />
+      </ContentRow>
 
       {/* Content Row */}
 

@@ -28,7 +28,8 @@ function UserInfoDiv(props) {
   else {
     return (
       <a href="https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=59x8jyaudw3pnyi722x3e2x9awh385&redirect_uri=https://c-rainbow.github.io/twitch-analyzer-login/oauth/redirect/intentionally_long_directory_name/to_hide_token_in_address_bar/still_need_to_add_more_characters/but_I_dont_know_what_else_to_say/I_will_just_generate_some_random_string/rsnxh6cjm08oefbznda54mgce1lfi89oa3gw6lr6/ha5daayx8au6tosio9evov7x1s2qejxzu0uaqvzn/lxj71wviygdkcwb09y14rkiiv0rgap1n52h07zkm/pyfurq9t674cghvbn2fxdrpvnr3vobypy2z1mp8l/login.html"
-        className="d-sm-inline-block btn btn-sm btn-primary shadow-sm twitch-login-button">
+        className="d-sm-inline-block btn btn-sm shadow-sm twitch-login-button"
+        style={{backgroundColor:"#9146ff", color: "#eaeaea"}}>
         <i className="fab fa-twitch text-white-50"></i> 로그인
       </a>
     )
@@ -41,10 +42,7 @@ export default function TopBar() {
     <nav className="navbar navbar-expand navbar-light bg-white shadow sticky-top">
       
       <Link className="brand d-flex align-items-center justify-content-center" to="/">
-        <div className="brand-icon">
-          <i className="fas fa-smile-wink"></i>
-        </div>
-        <div className="brand-text">다시보기 분석기</div>
+        <h3 className="text-dark">다시보기 분석기</h3>
       </Link>
 
       <div className="col-xs-0 col-sm-1"></div>

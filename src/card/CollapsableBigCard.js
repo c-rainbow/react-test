@@ -18,7 +18,7 @@ export default class CollapsableBigCard extends React.Component {
           <div className="card-header d-flex flex-row align-items-center justify-content-between">
             <a href={collapseLink} className="w-100 py-1" data-toggle="collapse"
                 role="button" aria-expanded="true" aria-controls={collapsableBodyId}>
-                <h6 className="m-0 font-weight-bold text-primary">{props.title}</h6>
+                <h6 className="m-0 font-weight-bold text-dark">{props.title}</h6>
             </a>
             {props.headerDropdown}
           </div>
