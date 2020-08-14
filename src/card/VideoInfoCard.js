@@ -5,17 +5,12 @@ import ContentRow from "../layout/ContentRow";
 import { useRepositoryStore } from "../states/repository";
 
 
-function getChatlogFileName() {
-  return sessionStorage.getItem("chatlog_file_name") || null;
-}
-
 function getFollowerlistFileName() {
   return sessionStorage.getItem("followerlist_file_name") || null; 
 }
 
 
 export default function VideoInfoCard() {
-  const chatlogFileMessage = getChatlogFileName() || "";
   const followerlistFileMessage = getFollowerlistFileName() || "";
   const inputFileElemRef = React.createRef();
   const {currentRepo, loadNewRepo} = useRepositoryStore(
@@ -25,6 +20,7 @@ export default function VideoInfoCard() {
     const fr = new FileReader(); 
     fr.onload = function(){ 
       const content = fr.result.toString();
+
       const jsonContent = JSON.parse(content);
       const commentDatas = jsonContent["comments"] || [];
       const CommentRepository = window.commentrepository.CommentRepository;
@@ -49,7 +45,6 @@ export default function VideoInfoCard() {
           </button>
           <input type="file" name="chatlog-inputfile" id="chatlog-inputfile" className="d-none"
             ref={inputFileElemRef} onChange={readChatlogFile} />
-          <span>{chatlogFileMessage}</span>
           <span>Comment count: {commentCount}</span>
         </div>
         <div className="col-sm-12 col-md-6">
@@ -66,37 +61,37 @@ export default function VideoInfoCard() {
       <hr className="divider"/>
       <ContentRow>
         <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        스트리머: 누구누구(username)
+        스트리머: -1
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        방송 제목: 무슨무슨제목
+        방송 제목: -1
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        카테고리: Just Chatting
+        카테고리: -1
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        방송 시작: 2020년 8월 13일 6:53AM
+        방송 시작: -1
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        방송 시간: 7시간 1분
+        방송 시간: -1시간 -2분 -3초
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        총 채팅 개수: 58822개
+        총 채팅 개수: -1개
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        총 비트: 300개
+        총 비트: -1개
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        총 구독 (선물 제외): 3명
+        총 구독 (선물 제외): -1명
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        총 구독 선물: 22명
+        총 구독 선물: -1명이 총 -2개
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        총 팔로워 수: 1000명
+        총 팔로워 수: -1명
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-          팔로워 목록 기준 시간: 2020년 8월 3일 3:01PM
+          팔로워 목록 기준 시간: -1년 -1월 -1일 -1:-1:-1AM
         </div>
       </ContentRow>
     </CollapsableBigCard>

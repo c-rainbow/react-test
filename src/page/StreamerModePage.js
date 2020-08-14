@@ -5,6 +5,8 @@ import SearchBar from '../components/SearchBar';
 import RecentFilter from '../components/RecentFilter';
 import PageWrapper from './PageWrapper';
 import VideoInfoCard from '../card/VideoInfoCard';
+import TopChatterChartCard from '../card/TopChatterChartCard';
+import ChatCountTimeSeriesCard from '../card/ChatCountTimeSeriesCard';
 
 
 
@@ -16,13 +18,14 @@ function StreamerModePageContent() {
         <VideoInfoCard />
       </ContentRow>
 
+      {/* Top Chatter row */}
+      <ContentRow>
+        <TopChatterChartCard title="채팅 랭킹" />
+      </ContentRow>
+
       {/* Chat count by time row */}
       <ContentRow>
-        <CollapsableBigCard title="시간별 채팅" columnSizes="col-12" collapsableBodyId="chat-count-time-series-id">
-          <div className="chart-area">
-            <canvas id="chat-count-time-series-chart-canvas"></canvas>
-          </div>
-        </CollapsableBigCard>
+        <ChatCountTimeSeriesCard title="시간별 채팅" />
       </ContentRow>
 
       {/* Top emotes row */}
