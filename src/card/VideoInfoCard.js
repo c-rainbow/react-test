@@ -14,13 +14,7 @@ const [useFilenameStore] = create(set => ({
 }));
 
 
-function getFollowerlistFileName() {
-  return sessionStorage.getItem("followerlist_file_name") || null; 
-}
-
-
 export default function VideoInfoCard() {
-  const followerlistFileMessage = getFollowerlistFileName() || "";
   const inputFileElemRef = React.createRef();
   
   const [chatlogFilename, setChatlogFile] = useFilenameStore(
@@ -69,7 +63,7 @@ export default function VideoInfoCard() {
             </label>
           </button>
           <input type="file" name="followerlist-inputfile" id="followerlist-inputfile" className="d-none" />
-          <span>{followerlistFileMessage}</span>
+          <span>{/*followerlistFileMessage*/}</span>
         </div>
       </ContentRow>
       <StreamInfo repository={currentRepo} />
@@ -85,6 +79,8 @@ function StreamInfo(props) {
   }
 
   const data = [
+    //["총 이모티콘 사용 개수 (중복 포함)", ......, "개"],
+    //["총 쓰인 이모티콘 종류 (중복 제외)", ......, "가지"],
     ["채팅 친 사람 수", repository.getUserCount(), "명"],
     ["총 채팅 개수", repository.getCommentCount(), "개"],
     ["총 비트", repository.getTotalBits(), "비트"]
