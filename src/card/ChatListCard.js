@@ -1,26 +1,7 @@
 import React from "react";
 import { useRepositoryStore } from "../states/repository";
 import CollapsableBigCard from "./CollapsableBigCard";
-
-
-function getTimeDisplayString(comment) {
-  let rTime = Math.floor(comment.relativeTime);
-  
-  const seconds = rTime % 60;
-  let timeString = seconds.toString().padStart(2, "0");
-   
-  rTime = Math.floor(rTime / 60);
-  const minutes = rTime % 60;
-  timeString = minutes.toString().padStart(2, "0") + ":" + timeString;
-
-  rTime = Math.floor(rTime / 60);
-  if(rTime > 0) {
-    timeString = rTime.toString().padStart(2, "0") + ":" + timeString;
-  }
-
-  timeString = timeString.padStart(8);
-  return timeString;
-}
+import { getTimeDisplayString } from "../util/timeUtil";
 
 
 function getCommentColor(comment) {
@@ -33,7 +14,7 @@ function SingleChat(props) {
   const index = props.index;
   return (
     <div className="my-1" key={index.toString()}>
-      <span class="small">{getTimeDisplayString(comment)} </span>
+      <span class="small">{getTimeDisplayString(comment.relativeTime)} </span>
       <span className="large font-weight-bold" style={{color: getCommentColor(comment)}}>
         {comment.user.getDisplayString()}
       </span>
