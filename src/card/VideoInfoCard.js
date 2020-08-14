@@ -10,6 +10,9 @@ function getFollowerlistFileName() {
 }
 
 
+
+
+
 export default function VideoInfoCard() {
   const followerlistFileMessage = getFollowerlistFileName() || "";
   const inputFileElemRef = React.createRef();
@@ -57,43 +60,36 @@ export default function VideoInfoCard() {
           <span>{followerlistFileMessage}</span>
         </div>
       </ContentRow>
+      <StreamInfo repository={currentRepo} />
+    </CollapsableBigCard>
+  )
+}
 
+
+function StreamInfo(props) {
+  const repository = props.repository;
+  if(repository === null) {
+    return null;
+  }
+
+  const data = [
+    ["채팅 친 사람 수", repository.getUserCount(), "개"],
+    ["총 채팅 개수", repository.getCommentCount(), "개"],
+    ["총 비트", repository.getTotalBits(), "비트"]
+  ];
+
+  const dataElems = data.map((item, index) => (
+    <div className="col-sm-12 col-md-6 col-lg-4 my-1" key={index.toString()}>
+      {item[0]}: {item[1]}{item[2]}
+    </div>
+  ));
+
+  return (
+    <>
       <hr className="divider"/>
       <ContentRow>
-        <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        스트리머: -1
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        방송 제목: -1
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        카테고리: -1
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        방송 시작: -1
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        방송 시간: -1시간 -2분 -3초
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        총 채팅 개수: -1개
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        총 비트: -1개
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        총 구독 (선물 제외): -1명
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        총 구독 선물: -1명이 총 -2개
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-        총 팔로워 수: -1명
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 my-1">
-          팔로워 목록 기준 시간: -1년 -1월 -1일 -1:-1:-1AM
-        </div>
+        {dataElems}
       </ContentRow>
-    </CollapsableBigCard>
+    </>
   )
 }
