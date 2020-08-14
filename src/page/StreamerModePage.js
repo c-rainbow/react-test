@@ -8,6 +8,7 @@ import VideoInfoCard from '../card/VideoInfoCard';
 import TopChatterChartCard from '../card/TopChatterChartCard';
 import ChatCountTimeSeriesCard from '../card/ChatCountTimeSeriesCard';
 import TopEmotesChartCard from '../card/TopEmotesChartCard';
+import ChatListCard from '../card/ChatListCard';
 
 
 
@@ -17,6 +18,12 @@ function StreamerModePageContent() {
       {/* Video info row */}
       <ContentRow>
         <VideoInfoCard />
+      </ContentRow>
+
+      {/* Chat content row */}
+      <ContentRow>
+        {/* Filtered chat area */}
+        <ChatListCard title="채팅 검색 결과" />
       </ContentRow>
 
       {/* Top Chatter row */}
@@ -32,19 +39,6 @@ function StreamerModePageContent() {
       {/* Top emotes row */}
       <ContentRow>
         <TopEmotesChartCard title="이모티콘 통계" />
-      </ContentRow>
-
-      {/* Chat content row */}
-      <ContentRow>
-        {/* Chat filter area */}
-        <CollapsableBigCard title="최근 사용한 채팅 필터" columnSizes="col-xl-4 col-lg-5" collapsableBodyId="chat-search-bar-id">
-          <SearchBar />
-        </CollapsableBigCard>
-        {/* Filtered chat area */}
-        <CollapsableBigCard title="채팅 검색 결과" columnSizes="col-xl-8 col-lg-7" collapsableBodyId="filtered-chat-list-id">
-          {/* Chat contents will be added here later */}
-          <div className="filtered-chats"></div>
-        </CollapsableBigCard>
       </ContentRow>
     </div>
   );
