@@ -22,8 +22,8 @@ const chartOptions = {
       padding: {
           left: 10,
           right: 25,
-          top: 25,
-          bottom: 0
+          top: 20,
+          bottom: 27
       }
   },
   scales: {
@@ -80,14 +80,31 @@ const chartOptions = {
   },
 };
 
+function getEmoteLabelPlugins(imageUrls) {
+  return [{
+    afterDraw: chart => {      
+      const ctx = chart.chart.ctx; 
+      const xAxis = chart.scales['x-axis-0'];
+      const yAxis = chart.scales['y-axis-0'];
+      xAxis.ticks.forEach((_, index) => {  
+        const x = xAxis.getPixelForTick(index);      
+        const image = new Image();
+        image.src = imageUrls[index];
+        ctx.drawImage(image, x - 12, yAxis.bottom + 30);
+      });      
+    }
+  }]
+}
+
 
 function getEmotesData(repository) {
     const topEmotes = repository.getTopEmotes(20);
-    const names = topEmotes.map((ec) => ec.emote.name);
+    const names = topEmotes.map(ec => ec.emote.name);
     const counts = topEmotes.map((ec) => ec.count);
-    //console.log("counts:" + counts);
-    //const maxCount = counts.reduce((prev, curr) => Math.max(prev, curr));
-    return [names, counts];
+    const urls = topEmotes.map(ec => ec.emote.getImageUrl());
+    const plugins = getEmoteLabelPlugins(urls);
+    //console.log("urls: " + urls);
+    return [names, counts, plugins];
 }
 
 
@@ -96,11 +113,10 @@ export default function TopEmotesChartCard(props) {
   let chartComponent = null;
   if(currentRepo !== null) {
     const data = Object.assign({}, chartData);
-    const [xLabels, yValues] = getEmotesData(currentRepo);
+    const [xLabels, yValues, plugins] = getEmotesData(currentRepo);
     data.labels = xLabels;
     data.datasets[0].data = yValues;
-    //console.log("data: " + JSON.stringify(data));
-    chartComponent = <Bar data={data} options={chartOptions} />
+    chartComponent = <Bar data={data} options={chartOptions} plugins={plugins} redraw={true} />
   }
   return (
     <CollapsableBigCard title={props.title} columnSizes="col-12" collapsableBodyId="top-emotes-chart-id">
