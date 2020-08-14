@@ -7,6 +7,7 @@ import PageWrapper from './PageWrapper';
 import VideoInfoCard from '../card/VideoInfoCard';
 import TopChatterChartCard from '../card/TopChatterChartCard';
 import ChatCountTimeSeriesCard from '../card/ChatCountTimeSeriesCard';
+import TopEmotesChartCard from '../card/TopEmotesChartCard';
 
 
 
@@ -30,11 +31,7 @@ function StreamerModePageContent() {
 
       {/* Top emotes row */}
       <ContentRow>
-        <CollapsableBigCard title="이모티콘 통계"  columnSizes="col-12" collapsableBodyId="top-emote-count-id">
-          <div className="chart-area">
-            <canvas id="top-emote-chart-canvas"></canvas>
-          </div>
-        </CollapsableBigCard>
+        <TopEmotesChartCard title="이모티콘 통계" />
       </ContentRow>
 
       {/* Chat content row */}
