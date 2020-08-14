@@ -3,6 +3,15 @@ import React from "react";
 import CollapsableBigCard from "./CollapsableBigCard";
 import ContentRow from "../layout/ContentRow";
 import { useRepositoryStore } from "../states/repository";
+import create from "zustand";
+
+
+const [useFilenameStore] = create(set => ({
+  chatlogFilename: null,
+  followerlistFilename: null,
+  setChatlogFile: (filename) => set({chatlogFilename: filename}),
+  setFollowerlistFile: (filename) => set({followerlistFilename: filename})
+}));
 
 
 function getFollowerlistFileName() {
@@ -10,33 +19,36 @@ function getFollowerlistFileName() {
 }
 
 
-
-
-
 export default function VideoInfoCard() {
   const followerlistFileMessage = getFollowerlistFileName() || "";
   const inputFileElemRef = React.createRef();
+  
+  const [chatlogFilename, setChatlogFile] = useFilenameStore(
+    state => [state.chatlogFilename, state.setChatlogFile]);
+  let chatlogFilenameElem = null;
+  if(chatlogFilename !== null) {
+    chatlogFilenameElem = <span>{chatlogFilename}</span>;
+  }
+
   const {currentRepo, loadNewRepo} = useRepositoryStore(
     state => ({currentRepo: state.repository, loadNewRepo: state.loadNewRepo}));
-
   const readChatlogFile = function() { 
     const fr = new FileReader(); 
     fr.onload = function(){ 
-      const content = fr.result.toString();
+      setChatlogFile(fileToRead.name);
 
+      const content = fr.result.toString();
       const jsonContent = JSON.parse(content);
       const commentDatas = jsonContent["comments"] || [];
       const CommentRepository = window.commentrepository.CommentRepository;
       const originalRepository = CommentRepository.fromCommentsData(commentDatas);
       loadNewRepo(originalRepository);
+      
     }    
-    fr.readAsText(inputFileElemRef.current.files[0]); 
+    const fileToRead = inputFileElemRef.current.files[0];
+    fr.readAsText(fileToRead); 
   }
 
-  let commentCount = 0;
-  if(currentRepo !== null) {
-    commentCount = currentRepo.getCommentCount();
-  }
   return (
     <CollapsableBigCard title="영상 정보" columnSizes="col-12" collapsableBodyId="video-info-id">
       <ContentRow>
@@ -48,7 +60,7 @@ export default function VideoInfoCard() {
           </button>
           <input type="file" name="chatlog-inputfile" id="chatlog-inputfile" className="d-none"
             ref={inputFileElemRef} onChange={readChatlogFile} />
-          <span>Comment count: {commentCount}</span>
+          {chatlogFilenameElem}
         </div>
         <div className="col-sm-12 col-md-6">
           <button className="btn btn-secondary m-1">
@@ -73,7 +85,7 @@ function StreamInfo(props) {
   }
 
   const data = [
-    ["채팅 친 사람 수", repository.getUserCount(), "개"],
+    ["채팅 친 사람 수", repository.getUserCount(), "명"],
     ["총 채팅 개수", repository.getCommentCount(), "개"],
     ["총 비트", repository.getTotalBits(), "비트"]
   ];
