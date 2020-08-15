@@ -47,7 +47,7 @@ export default function TopBar() {
 
       {/*<div className="col-xs-0 col-sm-1"></div>*/}
       <div className="col-sm-6 col-xs-12 ml-auto">
-        <SearchBar />
+        <SearchBar placeholder="필터" />
       </div>
 
       {/* Topbar Navbar */}
