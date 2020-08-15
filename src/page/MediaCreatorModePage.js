@@ -1,6 +1,6 @@
 import React from 'react';
-import TopBar from '../layout/TopBar';
-import Sidebar from '../layout/Sidebar';
+//import TopBar from '../layout/TopBar';
+//import Sidebar from '../layout/Sidebar';
 import PageWrapper from './PageWrapper';
 
 
@@ -155,25 +155,6 @@ function MediaCreatorModePageContent() {
       {/* Card Header - Dropdown */}
       {/*<a href="#collapse-chat-count" className="d-block card-header py-3" data-toggle="collapse"
         role="button" aria-expanded="true" aria-controls="collapse-chat-count">*/}
-      <div className="card-header d-flex flex-row align-items-center justify-content-between">
-                  
-        <a href="#collapse-chat-count" className="w-100 py-1" data-toggle="collapse"
-        role="button" aria-expanded="true" aria-controls="collapse-chat-count">
-        <h6 className="m-0 font-weight-bold text-primary">시간별 채팅</h6>
-        </a>
-        <div className="dropdown no-arrow">
-        <a className="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i className="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-        </a>
-        <div className="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-          <div className="dropdown-header">시간별:</div>
-          <a className="dropdown-item" href="#">1분</a>
-          <a className="dropdown-item" href="#">5분</a>
-          <div className="dropdown-divider"></div>
-          <a className="dropdown-item" href="#">10분</a>
-        </div>
-        </div>
-      </div>
       {/*</a>*/}
       {/* Card Body */}
       <div className="collapse show" id="collapse-chat-count">

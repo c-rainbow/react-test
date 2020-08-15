@@ -14,35 +14,76 @@ const [useFilenameStore] = create(set => ({
 }));
 
 
-export default function VideoInfoCard() {
-  const inputFileElemRef = React.createRef();
+export default function StreamInfoCard() {
+  const chatlogInputFileElemRef = React.createRef();
+  const followerlistInputFileElemRef = React.createRef();
   
-  const [chatlogFilename, setChatlogFile] = useFilenameStore(
-    state => [state.chatlogFilename, state.setChatlogFile]);
+  const [chatlogFilename, setChatlogFile, followerlistFilename, setFollowerlistFile] = useFilenameStore(
+      state => [state.chatlogFilename, state.setChatlogFile,
+          state.followerlistFilename, state.setFollowerlistFile]);
+  
   let chatlogFilenameElem = null;
   if(chatlogFilename !== null) {
-    chatlogFilenameElem = <span>{chatlogFilename}</span>;
+    chatlogFilenameElem = <span className="ml-2">{chatlogFilename}</span>;
+  }
+  let followerlistFilenameElem = null;
+  if(followerlistFilename !== null) {
+    followerlistFilenameElem = <span className="ml-2">{followerlistFilename}</span>;
   }
 
-  const {currentRepo, loadNewRepo} = useRepositoryStore(
-    state => ({currentRepo: state.repository, loadNewRepo: state.loadNewRepo}));
+  const [currentRepo, loadNewRepo] = useRepositoryStore(
+      state => ([state.repository, state.loadNewRepo]));
   const readChatlogFile = function() { 
     const fr = new FileReader(); 
-    fr.onload = function(){ 
+    fr.onload = function() { 
       setChatlogFile(fileToRead.name);
 
       const content = fr.result.toString();
+
+      const beforeParse = performance.now();
       const jsonContent = JSON.parse(content);
+      const afterParse = performance.now();
+      console.log("Parse time: " + (afterParse - beforeParse) + "ms");
+
       const commentDatas = jsonContent["comments"] || [];
+
+      const beforeRepo = performance.now();
       const CommentRepository = window.commentrepository.CommentRepository;
       const originalRepository = CommentRepository.fromCommentsData(commentDatas);
+      const afterRepo = performance.now();
+      console.log("Repository time: " + (afterRepo - beforeRepo) + "ms");
+
       loadNewRepo(originalRepository);
       const end = performance.now();
       console.log("Load time: " + (end - start) + "ms");
     }    
-    const fileToRead = inputFileElemRef.current.files[0];
+    const fileToRead = chatlogInputFileElemRef.current.files[0];
     const start = performance.now();
     fr.readAsText(fileToRead); 
+  }
+
+  const readFollowerlistFile = function() {
+    const fr = new FileReader();
+    fr.onload = function() {
+      setFollowerlistFile(fileToRead.name);
+
+      const content = fr.result;//.toString();
+      
+      const beforeParse = performance.now();
+      const jsonContent = JSON.parse(content);
+      const afterParse = performance.now();
+      console.log("Parse time: " + (afterParse - beforeParse) + "ms");
+      
+      const followerlist = jsonContent["followers"] || [];
+      
+      //originalRepo.addFollowerlist(followerlist);
+      if(1 === true) currentRepo.addFollowerlist(followerlist);
+      const end = performance.now();
+      console.log("Followerlist load time: " + (end - start) + "ms");
+    }
+    const fileToRead = followerlistInputFileElemRef.current.files[0];
+    const start = performance.now();
+    fr.readAsArrayBuffer(fileToRead); 
   }
 
   return (
@@ -51,31 +92,22 @@ export default function VideoInfoCard() {
         <div className="col-sm-12 col-md-6">
           <span className="button-container">
             <label htmlFor="chatlog-inputfile" className="btn btn-secondary chatlog-inputfile-upload-label">
-            채팅 로그 파일 선택
+              채팅 로그 파일 선택
             </label>
             <input type="file" name="chatlog-inputfile" id="chatlog-inputfile" className="d-none"
-              ref={inputFileElemRef} onChange={readChatlogFile} />
+              ref={chatlogInputFileElemRef} onChange={readChatlogFile} />
           </span>
           {chatlogFilenameElem}
         </div>
-        {/*<div className="col-sm-12 col-md-6">
-          <button className="btn btn-secondary m-1">
-            <label htmlFor="chatlog-inputfile" className="chatlog-inputfile-upload-label mb-0">
-              채팅 로그 파일 선택 
-            </label>
-          </button>
-          <input type="file" name="chatlog-inputfile" id="chatlog-inputfile" className="d-none"
-            ref={inputFileElemRef} onChange={readChatlogFile} />
-          {chatlogFilenameElem}
-        </div>*/}
         <div className="col-sm-12 col-md-6">
-          <button className="btn btn-secondary m-1">
-            <label htmlFor="followerlist-inputfile" className="followerlist-inputfile-upload-label mb-0">
-              팔로워 목록 파일 선택
-            </label>
-          </button>
-          <input type="file" name="followerlist-inputfile" id="followerlist-inputfile" className="d-none" />
-          <span>{/*followerlistFileMessage*/}</span>
+        <span className="button-container">
+          <label htmlFor="followerlist-inputfile" className="btn btn-secondary chatlog-inputfile-upload-label">
+            팔로워 목록 파일 선택
+          </label>
+          <input type="file" name="followerlist-inputfile" id="followerlist-inputfile" className="d-none"
+              ref={followerlistInputFileElemRef} onChange={readFollowerlistFile} />
+          </span>
+          {followerlistFilenameElem}
         </div>
       </ContentRow>
       <StreamInfo repository={currentRepo} />

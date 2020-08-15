@@ -38,7 +38,7 @@ export default function ChatListCard(props) {
     console.log("Comment length: " + comments.length);
 
     chatListComponent = comments.map((comment, index) => (
-      <SingleChat comment={comment} index={index} />
+      <SingleChat comment={comment} index={index} key={index} />
     ));
   }
   return (

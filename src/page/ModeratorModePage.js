@@ -1,8 +1,6 @@
 import React from 'react';
-import TopBar from '../layout/TopBar';
-import Sidebar from '../layout/Sidebar';
 import PageWrapper from './PageWrapper';
-import VideoInfoCard from '../card/VideoInfoCard';
+import StreamInfoCard from '../card/StreamInfoCard';
 import ContentRow from '../layout/ContentRow';
 
 
@@ -75,7 +73,7 @@ function ModeratorModePageContent() {
 
       {/* Video info row */}
       <ContentRow>
-        <VideoInfoCard />
+        <StreamInfoCard />
       </ContentRow>
 
       {/* Content Row */}
@@ -95,16 +93,9 @@ function ModeratorModePageContent() {
                 <h6 className="m-0 font-weight-bold text-primary">시간별 채팅</h6>
               </a>
               <div className="dropdown no-arrow">
-                <a className="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a className="dropdown-toggle" href="#dropdownMenuLink" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i className="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                 </a>
-                <div className="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                  <div className="dropdown-header">시간별:</div>
-                  <a className="dropdown-item" href="#">1분</a>
-                  <a className="dropdown-item" href="#">5분</a>
-                  <div className="dropdown-divider"></div>
-                  <a className="dropdown-item" href="#">10분</a>
-                </div>
               </div>
             </div>
             {/*</a>*/}

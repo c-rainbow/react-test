@@ -1,10 +1,7 @@
 import React from 'react';
-import CollapsableBigCard from '../card/CollapsableBigCard';
 import ContentRow from '../layout/ContentRow';
-import SearchBar from '../components/SearchBar';
-import RecentFilter from '../components/RecentFilter';
 import PageWrapper from './PageWrapper';
-import VideoInfoCard from '../card/VideoInfoCard';
+import StreamInfoCard from '../card/StreamInfoCard';
 import TopChatterChartCard from '../card/TopChatterChartCard';
 import ChatCountTimeSeriesCard from '../card/ChatCountTimeSeriesCard';
 import TopEmotesChartCard from '../card/TopEmotesChartCard';
@@ -17,7 +14,12 @@ function StreamerModePageContent() {
     <div className="container-fluid">
       {/* Video info row */}
       <ContentRow>
-        <VideoInfoCard />
+        <StreamInfoCard />
+      </ContentRow>
+
+      {/* Chat count by time row */}
+      <ContentRow>
+        <ChatCountTimeSeriesCard title="시간별 채팅" />
       </ContentRow>
 
       {/* Chat content row */}
@@ -29,11 +31,6 @@ function StreamerModePageContent() {
       {/* Top Chatter row */}
       <ContentRow>
         <TopChatterChartCard title="채팅 랭킹" />
-      </ContentRow>
-
-      {/* Chat count by time row */}
-      <ContentRow>
-        <ChatCountTimeSeriesCard title="시간별 채팅" />
       </ContentRow>
 
       {/* Top emotes row */}
@@ -53,17 +50,15 @@ export default function StreamerModePage() {
   )
 }
 
-
+/*
 function text() {
   return (<ContentRow>
-        {/* Chat filter area */}
         <div className="col-xl-12 col-lg-12">
           <div className="card shadow mb-4 mt-2">
             <ContentRow>
               <div className="col-3"></div>
               <div className="col-lg-6 col-sm-12">
                 <div className="card-body">
-                  {/* Content Search */}
                   <SearchBar />
                 </div>
               </div>
@@ -81,4 +76,4 @@ function text() {
         </div>
       </ContentRow>
   )
-}
+}*/
