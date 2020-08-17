@@ -12,6 +12,7 @@ import Footer from './layout/Footer';
 import StreamerModePage from './page/StreamerModePage';
 import ModeratorModePage from './page/ModeratorModePage';
 import MediaCreatorModePage from './page/MediaCreatorModePage';
+import LoginRedirectionPage from './page/LoginRedirectionPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/analytics/streamer" children={StreamerModePage} />
         <Route path="/analytics/moderator" children={ModeratorModePage} />
         <Route path="/analytics/media-creator" children={MediaCreatorModePage} />
+        <Route path="/dev/login" children={LoginRedirectionPage} />
       </Switch>
       {/* End of Page Wrapper */}
 
