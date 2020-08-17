@@ -41,7 +41,7 @@ function StreamerInfoElem(props) {
       </div>
       <div className="m-1 d-flex justify-content-center">{userDisplayString}</div>
       <div className="m-1 d-flex justify-content-center">
-        <button class="btn btn-primary">다운로드 시작</button>
+        <button className="btn btn-primary">다운로드 시작</button>
       </div>
     </div>
   )
