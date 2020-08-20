@@ -49,31 +49,3 @@ export default function StreamerModePage() {
     </PageWrapper>
   )
 }
-
-/*
-function text() {
-  return (<ContentRow>
-        <div className="col-xl-12 col-lg-12">
-          <div className="card shadow mb-4 mt-2">
-            <ContentRow>
-              <div className="col-3"></div>
-              <div className="col-lg-6 col-sm-12">
-                <div className="card-body">
-                  <SearchBar />
-                </div>
-              </div>
-              <div className="col-3"></div>
-            </ContentRow>
-            <ContentRow>
-              <div className="col-12 m-2">
-                <span className="ml-4 mr-2">최근 사용한 필터:</span>
-                <RecentFilter text="비구독자" />
-                <RecentFilter text="아이디 major_tryhard &amp; 생성일 1일 미만" />
-                <RecentFilter text="별 의미 없는 필터" />
-              </div>
-            </ContentRow>
-          </div>
-        </div>
-      </ContentRow>
-  )
-}*/

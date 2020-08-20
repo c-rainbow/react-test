@@ -2,6 +2,7 @@ import React from "react";
 import { isLoggedIn, loginClientId } from "../loginUtil";
 import SearchBar from "../components/SearchBar";
 import { Link } from "react-router-dom";
+import { useRepositoryStore } from "../states/repository";
 
 
 const devLoginUrl = "http://localhost:3000/dev/login";
@@ -48,7 +49,35 @@ function UserInfoDiv(props) {
 }
 
 
+
+const getFilterFromText = window.filterparser.getFilterFromText;
+const CommentRepository = window.commentrepository.CommentRepository;
+
 export default function TopBar() {
+  const inputRef = React.createRef();
+  const [currentRepo, setFilteredRepo, clearFilteredRepo] = useRepositoryStore(
+    state => ([state.repository, state.setFilteredRepo, state.clearFilteredRepo]));
+
+  const onFilterTextSubmit = async function() {
+    if(!currentRepo) {
+      return;
+    }
+    const value = inputRef.current.value?.trim();
+    if(!value) {
+      clearFilteredRepo();
+      return;
+    }
+
+    const filter = getFilterFromText(value);
+    const filteredComments = currentRepo.filter(filter);
+    const filteredRepo = new CommentRepository(filteredComments);
+
+    const uc = filteredRepo.getUserCount();
+    const cc = filteredRepo.getCommentCount();
+    console.log(`Filtered to ${uc} users and ${cc} chats`);
+    setFilteredRepo(filteredRepo);
+  }
+
   return (
     <nav className="navbar navbar-expand navbar-light bg-white shadow sticky-top">
       
@@ -57,7 +86,7 @@ export default function TopBar() {
       </Link>
 
       <div className="col-sm-6 col-xs-12 ml-auto">
-        <SearchBar placeholder="필터" />
+        <SearchBar inputRef={inputRef} placeholder="필터" onButtonClick={onFilterTextSubmit} />
       </div>
 
       {/* Topbar Navbar */}
