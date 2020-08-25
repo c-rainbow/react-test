@@ -55,11 +55,11 @@ const CommentRepository = window.commentrepository.CommentRepository;
 
 export default function TopBar() {
   const inputRef = React.createRef();
-  const [currentRepo, setFilteredRepo, clearFilteredRepo] = useRepositoryStore(
-    state => ([state.repository, state.setFilteredRepo, state.clearFilteredRepo]));
+  const [originalRepo, setFilteredRepo, clearFilteredRepo] = useRepositoryStore(
+    state => ([state.originalRepository, state.setFilteredRepo, state.clearFilteredRepo]));
 
   const onFilterTextSubmit = async function() {
-    if(!currentRepo) {
+    if(!originalRepo) {
       return;
     }
     const value = inputRef.current.value?.trim();
@@ -69,7 +69,7 @@ export default function TopBar() {
     }
 
     const filter = getFilterFromText(value);
-    const filteredComments = currentRepo.filter(filter);
+    const filteredComments = originalRepo.filter(filter);
     const filteredRepo = new CommentRepository(filteredComments);
 
     const uc = filteredRepo.getUserCount();
