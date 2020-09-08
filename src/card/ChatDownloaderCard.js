@@ -5,12 +5,22 @@ import create from "zustand";
 
 
 const TwitchApiClient = window.twitchapiclient.TwitchApiClient;
+const streamSaver = window.streamSaver;
 
 
 export const [useVideoCache] = create(set => ({
   videoData: null,
   searchedId: null,
   setSearchResult: (data, searchedId) => set({videoData: data, searchedId}),
+}));
+
+const [downloadProgressCache] = create(set => ({
+  downloading: false,
+  chatCount: 0,
+  secondCount: 0,
+  startDownload: () => set({downloading: true, chatCount: 0, secondCount: 0}),
+  endDownload: () => set({downloading: false, chatCount: 0, secondCount: 0}),
+  updateProgress: (chatCount, secondCount) => set({chatCount, secondCount}),
 }));
 
 
@@ -33,12 +43,62 @@ function getTimeDisplayStr(totalSeconds) {
 }
 
 
+function getDownloadHandler(updateProgressFn, endDownloadFn) {
+  let downloadCount = 0;
+  // commentsData is array of comment JSON objects.
+  return function(done, errorMsg, httpStatus, commentsData) {
+    console.log("done: " + done);
+    const dataLen = commentsData.length;
+    downloadCount += dataLen;
+    const lastChatTime = commentsData[dataLen-1].content_offset_seconds;
+    console.log("lastChatTime: " + lastChatTime);
+    updateProgressFn(downloadCount, lastChatTime);
+    if(done) {
+      endDownloadFn();
+    }
+  }
+}
+
+
+function ProgressElem(props) {
+  console.log("downloading: " + props.downloading);
+  if(!props.downloading) {
+    return null;
+  }
+  return (
+    <div className="my-1 ml-3">
+      진행상황: {props.chatCount}개 채팅 다운받음
+    </div>
+  )
+}
+
+
 function VideoInfoElem(props) {
   const videoData = props.videoData;
-  const searchedId = props.searchedId;
+  const searchedId = props.searchedId; 
   if(!searchedId) {  // Initial state without any previous search
     return null;
   }
+
+  const [downloading, chatCount, secondCount, 
+      startDownload, endDownload, updateProgress] = downloadProgressCache(
+    state => [state.downloading, state.chatCount, state.secondCount, 
+        state.startDownload, state.endDownload, state.updateProgress]);
+
+  const onDownloadButtonClick = function(videoData) {
+    const client = new TwitchApiClient();
+    
+    const handler = getDownloadHandler(updateProgress, endDownload);
+    const downloader = client.getChatDownloader(handler);
+    
+    let videoId = videoData._id;
+    if(videoId.startsWith("v")) videoId = videoId.slice(1);
+    
+    console.log("Download start");
+    startDownload();
+    downloader.downloadChat(videoId);
+  }
+
   if(!videoData) {
     return (
       <div className="mt-2">
@@ -65,8 +125,11 @@ function VideoInfoElem(props) {
       <div className="my-1 ml-3">카테고리: {videoData.game}</div>
       <div className="my-1 ml-3">길이: {getTimeDisplayStr(videoData.length)}</div>
       <div className="my-1 d-flex justify-content-center">
-        <button className="btn btn-primary">다운로드 시작</button>
+        <button className="btn btn-primary" onClick={onDownloadButtonClick.bind(null, videoData)}>
+          다운로드 시작
+        </button>
       </div>
+      <ProgressElem downloading={downloading} chatCount={chatCount} secondCount={secondCount} />
     </div>
   )
 }
