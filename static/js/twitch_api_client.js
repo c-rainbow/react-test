@@ -18235,12 +18235,14 @@ class api_client_TwitchApiClient {
             accessToken = sessionStorage.getItem(accessTokenKey);
         }
         if (!accessToken) {
-            throw new Error("Access Token cannot be found.");
+            //throw new Error("Access Token cannot be found.");
         }
-        const clientId = ConfigManager.getClientId();
-        this.innerClient = lib_default.a.withCredentials(clientId, accessToken);
+        else {
+            const clientId = ConfigManager.getClientId();
+            this.innerClient = lib_default.a.withCredentials(clientId, accessToken);
+        }
     }
-    static getChatDownloader(handler) {
+    getChatDownloader(handler) {
         const downloader = new chat_downloader_ChatDownloader(handler);
         return downloader;
     }
