@@ -18240,7 +18240,7 @@ class api_client_TwitchApiClient {
         const clientId = ConfigManager.getClientId();
         this.innerClient = lib_default.a.withCredentials(clientId, accessToken);
     }
-    getChatDownloader(handler) {
+    static getChatDownloader(handler) {
         const downloader = new chat_downloader_ChatDownloader(handler);
         return downloader;
     }
