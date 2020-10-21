@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useRepositoryStore } from "../states/repository";
 
 
-const devLoginUrl = "http://localhost:3000/dev/login";
+const devLoginUrl = "http://localhost:3000/react-test/dev/login";
 // This is intentionally very long, to hide Oauth token in 
 const productionLoginUrl = "https://c-rainbow.github.io/twitch-analyzer-login/oauth/redirect/intentionally_long_directory_name/to_hide_token_in_address_bar/still_need_to_add_more_characters/but_I_dont_know_what_else_to_say/I_will_just_generate_some_random_string/rsnxh6cjm08oefbznda54mgce1lfi89oa3gw6lr6/ha5daayx8au6tosio9evov7x1s2qejxzu0uaqvzn/lxj71wviygdkcwb09y14rkiiv0rgap1n52h07zkm/pyfurq9t674cghvbn2fxdrpvnr3vobypy2z1mp8l/login.html";
 

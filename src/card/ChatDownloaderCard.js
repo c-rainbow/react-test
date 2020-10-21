@@ -45,23 +45,37 @@ function getTimeDisplayStr(totalSeconds) {
 
 function getDownloadHandler(updateProgressFn, endDownloadFn) {
   let downloadCount = 0;
+  const fileStream = streamSaver.createWriteStream("chat_download_text.json", {
+    size: 10000,
+  });
+  const writer = fileStream.getWriter();
+
   // commentsData is array of comment JSON objects.
-  return function(done, errorMsg, httpStatus, commentsData) {
-    console.log("done: " + done);
+  return async function(done, errorMsg, httpStatus, commentsData) {
+    //console.log("done: " + done);
     const dataLen = commentsData.length;
     downloadCount += dataLen;
-    const lastChatTime = commentsData[dataLen-1].content_offset_seconds;
-    console.log("lastChatTime: " + lastChatTime);
+    const lastChatTime = commentsData[dataLen-1]?.content_offset_seconds;
+    //console.log("lastChatTime: " + lastChatTime);
+
+    const stringified = JSON.stringify(commentsData);
+    console.log("stringified len: " + stringified.length);
+    const encoder = new TextEncoder();
+    const encoded = encoder.encode(stringified);
+    //await writer.write(stringified);
+    await writer.write(encoded);
+
     updateProgressFn(downloadCount, lastChatTime);
     if(done) {
       endDownloadFn();
+      writer.close();
     }
   }
 }
 
 
 function ProgressElem(props) {
-  console.log("downloading: " + props.downloading);
+  //console.log("downloading: " + props.downloading);
   if(!props.downloading) {
     return null;
   }
@@ -89,7 +103,8 @@ function VideoInfoElem(props) {
     const client = new TwitchApiClient();
     
     const handler = getDownloadHandler(updateProgress, endDownload);
-    const downloader = client.getChatDownloader(handler);
+    //const downloader = TwitchApiClient.getChatDownloader(handler);
+    const downloader = client.getChatDownloader(handler); 
     
     let videoId = videoData._id;
     if(videoId.startsWith("v")) videoId = videoId.slice(1);
@@ -114,6 +129,8 @@ function VideoInfoElem(props) {
   if(channel.display_name.toLowerCase() !== channel.name.toLowerCase()) {
     userDisplayString += `(${channel.name})`;
   }
+
+  const buttonText = downloading ? "다운로드 중" : "다운로드 시작";
   return (
     <div className="mt-2">
       <div className="my-1 d-flex justify-content-center">
@@ -125,8 +142,9 @@ function VideoInfoElem(props) {
       <div className="my-1 ml-3">카테고리: {videoData.game}</div>
       <div className="my-1 ml-3">길이: {getTimeDisplayStr(videoData.length)}</div>
       <div className="my-1 d-flex justify-content-center">
-        <button className="btn btn-primary" onClick={onDownloadButtonClick.bind(null, videoData)}>
-          다운로드 시작
+        <button className="btn btn-primary" disabled={downloading}
+            onClick={onDownloadButtonClick.bind(null, videoData)}>
+          {buttonText}
         </button>
       </div>
       <ProgressElem downloading={downloading} chatCount={chatCount} secondCount={secondCount} />

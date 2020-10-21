@@ -41,7 +41,7 @@ function Sidebar(props) {
       </div>
       
       {/* Nav Item - Follower list downloader */}
-      <NavItem url="/downloader" iconName="running" linkClass="downloader"
+      <NavItem url="/react-test/downloader" iconName="running" linkClass="downloader"
         selectedClass={props.selectedClass} linkName="채팅+팔로워 다운로드" />
       
       {/* Divider */}
@@ -52,13 +52,13 @@ function Sidebar(props) {
       </div>
       
       {/* Nav Item - Streamer mode */}
-      <NavItem url="/analytics/streamer" iconName="paw" linkClass="streamer-mode-analytics"
+      <NavItem url="/react-test/analytics/streamer" iconName="paw" linkClass="streamer-mode-analytics"
         selectedClass={props.selectedClass} linkName="스트리머 모드" />
       {/* Nav Item - Moderator mode */}
-      <NavItem url="/analytics/moderator" iconName="toolbox" linkClass="moderator-mode-analytics"
+      <NavItem url="/react-test/analytics/moderator" iconName="toolbox" linkClass="moderator-mode-analytics"
         selectedClass={props.selectedClass} linkName="관리자 모드" />
       {/* Nav Item - Media Editor mode */}
-      <NavItem url="/analytics/media-creator" iconName="cat" linkClass="media-creator-mode-analytics"
+      <NavItem url="/react-test/analytics/media-creator" iconName="cat" linkClass="media-creator-mode-analytics"
         selectedClass={props.selectedClass} linkName="편집자 모드" />
 
       {/* Divider */}

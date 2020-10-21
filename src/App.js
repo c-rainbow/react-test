@@ -19,12 +19,12 @@ function App() {
     <Router>
       {/* Page Wrapper */}
       <Switch>
-        <Route exact path="/" children={StreamerModePage} />
-        <Route path="/downloader" children={DownloaderPage} />
-        <Route path="/analytics/streamer" children={StreamerModePage} />
-        <Route path="/analytics/moderator" children={ModeratorModePage} />
-        <Route path="/analytics/media-creator" children={MediaCreatorModePage} />
-        <Route path="/dev/login" children={LoginRedirectionPage} />
+        <Route exact path="/react-test" children={StreamerModePage} />
+        <Route path="/react-test/downloader" children={DownloaderPage} />
+        <Route path="/react-test/analytics/streamer" children={StreamerModePage} />
+        <Route path="/react-test/analytics/moderator" children={ModeratorModePage} />
+        <Route path="/react-test/analytics/media-creator" children={MediaCreatorModePage} />
+        <Route path="/react-test/dev/login" children={LoginRedirectionPage} />
       </Switch>
       {/* End of Page Wrapper */}
 
